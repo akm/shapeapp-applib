@@ -11,8 +11,9 @@ type (
 
 	Handler        = orig.Handler
 	HandlerOptions = orig.HandlerOptions
+	Record         = orig.Record
 
-	origLogger = orig.Logger
+	Logger = orig.Logger
 )
 
 var (
@@ -27,11 +28,26 @@ var (
 	Group    = orig.Group
 	Any      = orig.Any
 
+	Default    = orig.Default
+	SetDefault = orig.SetDefault
+
 	NewJSONHandlerOrig = orig.NewJSONHandler
 	NewTextHandlerOrig = orig.NewTextHandler
 
 	NewJSONHandler = func(w io.Writer, opts *HandlerOptions) Handler { return NewJSONHandlerOrig(w, opts) }
 	NewTextHandler = func(w io.Writer, opts *HandlerOptions) Handler { return NewTextHandlerOrig(w, opts) }
+
+	Debug = orig.Debug
+	Info  = orig.Info
+	Warn  = orig.Warn
+	Error = orig.Error
+
+	DebugContext = orig.DebugContext
+	InfoContext  = orig.InfoContext
+	WarnContext  = orig.WarnContext
+	ErrorContext = orig.ErrorContext
+	Log          = orig.Log
+	LogAttrs     = orig.LogAttrs
 )
 
 const (
