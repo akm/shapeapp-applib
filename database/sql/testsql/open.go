@@ -13,17 +13,11 @@ import (
 )
 
 var (
-	pool *sql.DB
-	dsn  = os.Getenv("DB_DSN")
+	dsn = os.Getenv("DB_DSN")
 )
 
 func Open(t *testing.T, logger *slog.Logger) *sql.DB {
-	if pool != nil {
-		return pool
-	}
-
-	var err error
-	pool, err = sql.Open("mysql", dsn)
+	pool, err := sql.Open("mysql", dsn)
 	if err != nil {
 		t.Fatalf("unable to open database: %v", err)
 	}
