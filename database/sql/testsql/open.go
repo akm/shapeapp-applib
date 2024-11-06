@@ -16,13 +16,13 @@ var (
 	dsn = os.Getenv("DB_DSN")
 )
 
-func Open(t *testing.T, logger *slog.Logger) *sql.DB {
+func Open(t *testing.T) *sql.DB {
 	pool, err := sql.Open("mysql", dsn)
 	if err != nil {
 		t.Fatalf("unable to open database: %v", err)
 	}
 
-	adapter := sqldbloggerslog.New(logger)
+	adapter := sqldbloggerslog.New(slog.Default())
 	pool = sqldblogger.OpenDriver(dsn, pool.Driver(), adapter)
 
 	return pool
